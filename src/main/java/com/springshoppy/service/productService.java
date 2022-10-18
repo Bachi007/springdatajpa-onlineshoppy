@@ -17,8 +17,7 @@ public class productService {
 	@Autowired
 	private productRepository repo;
 	//getting produtcts and returning to controller
-	public List<product> getAllProducts(){
-		
+	public List<product> getAllProducts(){		
 		List<product> productList=new ArrayList<>();
 		repo.findAll().forEach(productList::add);
 		return productList;
@@ -39,6 +38,19 @@ public class productService {
 		return "Deleted Successfully";
 	}
 	
+	public String addallProducts(List<product> pl)
+	{
+		repo.saveAll(pl);
+		return "successfully added";
+	}
+	
+	public product getProductByName(String productName) {
+		return repo.findByProductName(productName);
+	}
+	
+	public List<product> getProductsByPrice(int productPrice){
+		return repo.findByProductPrice(productPrice);
+	}
 	
 	
 	
